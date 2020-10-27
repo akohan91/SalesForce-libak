@@ -39,4 +39,6 @@ ehthumbs.db
 $RECYCLE.BIN/
 
 
-.force-app/main/default/lwc/testComponent/
+force-app/main/default/lwc/testComponent
+force-app/main/default/classes/TestClass.cls
+force-app/main/default/classes/TestClass.cls-meta.xml
