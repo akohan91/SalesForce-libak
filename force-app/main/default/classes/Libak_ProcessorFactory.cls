@@ -1,5 +1,6 @@
 /**
  * @author Andrew Kohanovskij
+ * The class is used to create an instancee of processor class by class name
  */
 public class Libak_ProcessorFactory {
 
@@ -16,7 +17,7 @@ public class Libak_ProcessorFactory {
      * @param processorName { String }
      * @param errorMessage  { String }
      */
-    public static Libak_Processor getInstance(String processorName, String errorMessage) {
+    private static Libak_Processor getInstance(String processorName, String errorMessage) {
         Type processorType = Type.forName(processorName);
         if (processorType == null) {
             throw new Libak_ProcessorFactoryException(errorMessage);

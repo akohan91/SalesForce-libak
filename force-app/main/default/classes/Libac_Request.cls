@@ -8,7 +8,7 @@ public virtual class Libac_Request {
         this.data = (Map<String, Object>) JSON.deserializeUntyped(requestJSON);
     }
 
-    public Libac_Request(Map<String, Object> dataMap) {
-        this.data = dataMap == null ? this.data : dataMap;
+    public Libac_Request(Map<String, Object> requestMap) {
+        this.data = requestMap == null ? this.data : requestMap;
     }
 }
