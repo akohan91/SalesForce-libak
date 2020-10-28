@@ -11,17 +11,17 @@ export default class Libak_Base extends LightningElement {
 
     /**
      * Method shows the toast message
-     * @param {Object} toastData { 
-     *  variant < 'success', 'error', 'warning', 'info' > 
+     * @param {Object} request { 
+     *  status < 'success', 'error', 'warning', 'info' > 
      *  title, 
      *  message, 
      * }
      */
-    showToast(toastData) {
+    showToast(request) {
         const event = new ShowToastEvent({
-            title: toastData.title,
-            message: toastData.message,
-            variant: toastData.variant,
+            title: request.title,
+            message: request.message,
+            variant: request.status,
         });
         this.dispatchEvent(event);
     }

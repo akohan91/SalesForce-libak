@@ -1,5 +1,5 @@
 /**
- * @author Andrew Kohanovskij
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
 public class Libak_Map {
     protected Map<String, Object> sourceMap;
@@ -27,7 +27,7 @@ public class Libak_Map {
 
     /**
      * Returns the value from map by path
-     * @param path { String }
+     * @param  path  { String }
      * @return value { Object || null }
      */
     public Object value(String path) {
@@ -35,8 +35,8 @@ public class Libak_Map {
     }
 
     /**
-     * Returns the value from Map by path
-     * @param path { String[] }
+     * Returns the value from map by path
+     * @param  path  { String[] }
      * @return value { Object || null }
      */
     public Object value(List<String> path) {
@@ -77,8 +77,8 @@ public class Libak_Map {
 
     /**
      * Adds value to the map
-     * @param path { String }
-     * @param valus { Any }
+     * @param  path  { String }
+     * @param  value { Any }
      */
     public void putValue (String path, Object value) {
         putValue(path.split('\\.'), value);
@@ -86,8 +86,8 @@ public class Libak_Map {
 
     /**
      * Adds value to the map
-     * @param path { String[] }
-     * @param valus { Any }
+     * @param  path  { String[] }
+     * @param  value { Any }
      */
     public void putValue(List<String> path, Object value) {
         List<String> currentKeys = path;
@@ -147,8 +147,8 @@ public class Libak_Map {
 
     /**
      * Define is key matches to Integer type
-     * @param key { String }
-     * @return index { Integer | null }
+     * @param  key { String }
+     * @return     { Integer | null }
      */
     private Integer isListIndex(String key) {
         Matcher arrayMatcher = this.ARRAY_NOTATION.matcher(key);

@@ -1,25 +1,27 @@
 /**
- * @author Andrew Kohanovskij
- * The class is used to create an instancee of processor class by class name
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
+ * The class is used to create an instancee of Libak_Processor class by class name
  */
 public class Libak_ProcessorFactory {
 
     /********************************************************************************
      *                             PUBLIC METHODS
-     *******************************************************************************/
+    *******************************************************************************/
     
     /**
      * Creates instance of Proccessor
-     * @param processorName { String }
+     * @param  processorName { String }
+     * @return               { Libak_Processor }
      */
     public static Libak_Processor getInstance(String processorName) {
         return getInstance(processorName, 'No Processor Type with Name: ' + processorName);
     }
-    
+
     /**
      * Creates instance of Proccessor
-     * @param processorName { String }
-     * @param errorMessage  { String }
+     * @param  processorName { String }
+     * @param  errorMessage  { String }
+     * @return               { Libak_Processor }
      */
     private static Libak_Processor getInstance(String processorName, String errorMessage) {
         Type processorType = Type.forName(processorName);
@@ -37,7 +39,7 @@ public class Libak_ProcessorFactory {
 
     /********************************************************************************
      *                             EXCEPTION
-     *******************************************************************************/
+    *******************************************************************************/
 
     public class Libak_ProcessorFactoryException extends Exception {}
 }

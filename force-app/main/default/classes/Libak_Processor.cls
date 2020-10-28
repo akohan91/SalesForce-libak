@@ -1,5 +1,5 @@
 /**
- * @author Andrew Kohanovskij
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
 public abstract class Libak_Processor {
     protected Libac_Request request;
@@ -11,7 +11,8 @@ public abstract class Libak_Processor {
 
     /**
      * Runs the process
-     * @param dataMap { String } JSON
+     * @param  requestJSON { String } JSON
+     * @return             { Libac_Response }
      */
     public virtual Libac_Response process(String requestJSON) {
         this.response = this.process(new Libac_Request(requestJSON));
@@ -20,13 +21,18 @@ public abstract class Libak_Processor {
     
     /**
      * Runs the process
-     * @param dataMap { Map<String, Object> }
+     * @param  requestMap { Map<String, Object> }
+     * @return            { Libac_Response }
      */
-    public virtual Libac_Response process(Map<String, Object> dataMap) {
-        this.response = this.process(new Libac_Request(dataMap));
+    public virtual Libac_Response process(Map<String, Object> requestMap) {
+        this.response = this.process(new Libac_Request(requestMap));
         return this.response;
     }
 
+    /**
+     * Throws an error
+     * @param  errorMessage { String }
+     */
     public void throwError(String errorMessage){
         throw new Libak_ProcessorException(errorMessage);
     }
@@ -38,6 +44,7 @@ public abstract class Libak_Processor {
     /**
      * Method for the main logic in process
      * @param request { Libac_Request }
+     * @return        { Libac_Response }
      */
     private abstract Libac_Response process(Libac_Request request);
 

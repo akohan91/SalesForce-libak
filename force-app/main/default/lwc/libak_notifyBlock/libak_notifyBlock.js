@@ -5,21 +5,20 @@ export default class Libak_notifyBlock extends LightningElement {
     notifyData;
 
     /**
-     * 
-     * @param {Object} notifyData { 
-     *  variant < 'success', 'error', 'warning', 'info' >
+     * @param {Object} request { 
+     *  status < 'success', 'error', 'warning', 'info' >
      *  title,
      *  message
      * } 
      */
-    @api showNotification(notifyData) {
+    @api showNotification(request) {
         this.isNotify = true;
         this.notifyData = {
-            variant: notifyData.variant,
-            theme: `slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_${notifyData.variant}`,
-            icon: `utility:${notifyData.variant}`,
-            message: notifyData.message,
-            title: notifyData.title
+            variant: request.status,
+            theme: `slds-notify slds-notify_alert slds-theme_alert-texture slds-theme_${request.status}`,
+            icon: `utility:${request.status}`,
+            message: request.message,
+            title: request.title
         }
     }
 
