@@ -52,22 +52,20 @@ public class Libak_Map {
             String key = currentKeys.remove(0);
             Boolean isLastKey = currentKeys.isEmpty();
 
-            Matcher arrayMatcher = this.ARRAY_NOTATION.matcher(key);
-            Boolean isArrayKey = arrayMatcher.matches();
-            Integer index = isArrayKey ? Integer.valueOf(key) : null;
+            Integer index = this.isListIndex(key);
 
-            if(isArrayKey && (tempArr == null || index == null || tempArr.size() <= index)){
+            if(index != null && (tempArr == null || tempArr.size() <= index)){
                 return null;
             }
         
-            Object value = isArrayKey ? tempArr.get(index) : tempMap.get(key);
+            Object value = index != null  ? tempArr.get(index) : tempMap.get(key);
             if (isLastKey == true) {
                 return value;
             } else {
                 if(value instanceof List<Object>){
                     tempArr = (List<Object>) value;
                 } else {
-                    tempMap = isArrayKey ?
+                    tempMap = index != null  ?
                         (Map<String, Object>)tempArr.get(index) :
                         (Map<String, Object>)tempMap.get(key);
                     tempArr = null;
@@ -77,10 +75,20 @@ public class Libak_Map {
         return null;
     }
 
+    /**
+     * Adds value to the map
+     * @param path { String }
+     * @param valus { Any }
+     */
     public void putValue (String path, Object value) {
         putValue(path.split('\\.'), value);
     }
 
+    /**
+     * Adds value to the map
+     * @param path { String[] }
+     * @param valus { Any }
+     */
     public void putValue(List<String> path, Object value) {
         List<String> currentKeys = path;
         Object tempObj = this.sourceMap;
@@ -147,15 +155,5 @@ public class Libak_Map {
         Boolean isArrayKey = arrayMatcher.matches();
         Integer index = isArrayKey ? Integer.valueOf(key) : null;
         return index;
-    }
-
-    /**
-     * Define List or Map type
-     * @param key { String }
-     * @return index { Integer | null }
-     */
-    private Integer itarableType(String key) {
-        
-        return null;
     }
 }
