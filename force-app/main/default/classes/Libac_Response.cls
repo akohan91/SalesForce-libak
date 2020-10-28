@@ -12,6 +12,10 @@ public virtual class Libac_Response {
     public String message;
     public String variant;
 
+    /********************************************************************************
+     *                             CONSTRUCTORS
+     *******************************************************************************/
+
     public Libac_Response() {
         this.title = VARIANTS.get('Info');
         this.message = 'The response data is empty.';

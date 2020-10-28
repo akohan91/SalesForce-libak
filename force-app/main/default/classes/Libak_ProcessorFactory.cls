@@ -4,6 +4,10 @@
  */
 public class Libak_ProcessorFactory {
 
+    /********************************************************************************
+     *                             PUBLIC METHODS
+     *******************************************************************************/
+    
     /**
      * Creates instance of Proccessor
      * @param processorName { String }
@@ -30,6 +34,10 @@ public class Libak_ProcessorFactory {
 
         return processor;
     }
+
+    /********************************************************************************
+     *                             EXCEPTION
+     *******************************************************************************/
 
     public class Libak_ProcessorFactoryException extends Exception {}
 }
