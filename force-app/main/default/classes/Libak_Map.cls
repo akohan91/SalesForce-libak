@@ -2,12 +2,16 @@
  * @author Andrew Kohanovskij
  */
 public class Libak_Map {
-    private Map<String, Object> sourceMap;
+    protected Map<String, Object> sourceMap;
     private final Pattern ARRAY_NOTATION = Pattern.compile('\\d+');
 
     /********************************************************************************
      *                             CONSTRUCTORS
      *******************************************************************************/
+
+    public Libak_Map() {
+        this.sourceMap = new Map<String, Object>();
+    }
 
     public Libak_Map(Map<String, Object> sourceMap) {
         this.sourceMap = sourceMap;
@@ -70,6 +74,88 @@ public class Libak_Map {
                 }
             }
         }
+        return null;
+    }
+
+    public void putValue (String path, Object value) {
+        putValue(path.split('\\.'), value);
+    }
+
+    public void putValue(List<String> path, Object value) {
+        List<String> currentKeys = path;
+        Object tempObj = this.sourceMap;
+
+        while (!currentKeys.isEmpty()) {
+            if (tempObj == null) {
+                return;
+            }
+            
+            String key = currentKeys.remove(0);
+            Integer index = isListIndex(key);
+            Boolean isLastKey = currentKeys.isEmpty();
+
+            if (isLastKey) {
+                if (index != null) {
+                    List<Object> tempArr = (List<Object>) tempObj;
+                    if (tempArr.size() > index ) {
+                        tempArr.set(index, value);
+                    } else if (tempArr.size() == index) {
+                        tempArr.add(value);
+                    } else {
+                        System.debug('Something Wrong 1'); // TODO: Implemets handle Exception
+                        return;
+                    }
+                } else {
+                    Map<String, Object> tempMap = (Map<String, Object>) tempObj;
+                    tempMap.put(key, value);
+                }
+            } else {
+                if (tempObj instanceof List<Object> && index != null) {
+                    List<Object> tempArr = (List<Object>) tempObj;
+                    if (tempArr.size() > index) {
+                        tempObj = tempArr.get(index);
+                    } else if (tempArr.size() == index && isListIndex(currentKeys.get(0)) != null)  {
+                        tempArr.add(new List<Object>());
+                        tempObj = tempArr.get(index);
+                    } else if (tempArr.size() == index && isListIndex(currentKeys.get(0)) == null)  {
+                        tempArr.add(new Map<String, Object>());
+                        tempObj = tempArr.get(tempArr.size() - 1);
+                    } else {
+                        System.debug('Something Wrong 2'); // TODO: Implemets handle Exception
+                        return;
+                    }
+                } else if (tempObj instanceof Map<String, Object>) {
+                    Map<String, Object> tempMap = (Map<String, Object>) tempObj;
+                    if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) != null) {
+                        tempMap.put(key, new List<Object>());
+                    } else if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) == null) {
+                        tempMap.put(key, new Map<String, Object>());
+                    }
+                    tempObj =  tempMap.get(key);
+                }
+            }
+        }
+    }
+
+    /**
+     * Define is key matches to Integer type
+     * @param key { String }
+     * @return index { Integer | null }
+     */
+    private Integer isListIndex(String key) {
+        Matcher arrayMatcher = this.ARRAY_NOTATION.matcher(key);
+        Boolean isArrayKey = arrayMatcher.matches();
+        Integer index = isArrayKey ? Integer.valueOf(key) : null;
+        return index;
+    }
+
+    /**
+     * Define List or Map type
+     * @param key { String }
+     * @return index { Integer | null }
+     */
+    private Integer itarableType(String key) {
+        
         return null;
     }
 }
