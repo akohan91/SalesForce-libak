@@ -22,8 +22,4 @@ public virtual class Libac_Request extends Libak_Map {
     /********************************************************************************
      *                             PUBLIC METHODS
     *******************************************************************************/
-
-    public Map<String, Object> data() {
-        return this.data;
-    }
 }

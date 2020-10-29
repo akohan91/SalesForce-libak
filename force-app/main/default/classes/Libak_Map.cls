@@ -23,7 +23,15 @@ public virtual class Libak_Map {
 
     /********************************************************************************
      *                             PUBLIC METHODS
-     *******************************************************************************/
+    *******************************************************************************/
+
+    /**
+     * Returns the major map
+     * @return   { Map<String, Object> }
+     */
+    public Map<String, Object> data() {
+        return this.data;
+    }
 
     /**
      * Returns the value from map by path
