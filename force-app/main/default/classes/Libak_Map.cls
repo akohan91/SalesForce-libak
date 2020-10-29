@@ -28,7 +28,7 @@ public class Libak_Map {
     /**
      * Returns the value from map by path
      * @param  path  { String }
-     * @return value { Object || null }
+     * @return       { Object || null }
      */
     public Object value(String path) {
         return value(path.split('\\.'));
@@ -37,39 +37,35 @@ public class Libak_Map {
     /**
      * Returns the value from map by path
      * @param  path  { String[] }
-     * @return value { Object || null }
+     * @return       { Object || null }
      */
     public Object value(List<String> path) {
         List<String> currentKeys = path;
-        Map<String, Object> tempMap = this.sourceMap;
+        Object tempObj = this.sourceMap;
         List<Object> tempArr = null;
+        Map<String, Object> tempMap;
 
         while (!currentKeys.isEmpty()) {
-            if (tempMap == null && tempArr == null) {
+            if (tempObj != null && tempObj instanceof List<Object>) {
+                tempArr = (List<Object>) tempObj;
+            } else if (tempObj != null && tempObj instanceof Map<String, Object>) {
+                tempMap = (Map<String, Object>) tempObj;
+            } else {
                 return null;
             }
 
             String key = currentKeys.remove(0);
             Boolean isLastKey = currentKeys.isEmpty();
-
             Integer index = this.isListIndex(key);
 
-            if(index != null && (tempArr == null || tempArr.size() <= index)){
-                return null;
+            if (tempArr != null && index != null && tempArr.size() > index) {
+                tempObj = tempArr.get(index);
+            } else if (tempMap != null) {
+                tempObj = tempMap.get(key);
             }
-        
-            Object value = index != null  ? tempArr.get(index) : tempMap.get(key);
+
             if (isLastKey == true) {
-                return value;
-            } else {
-                if(value instanceof List<Object>){
-                    tempArr = (List<Object>) value;
-                } else {
-                    tempMap = index != null  ?
-                        (Map<String, Object>)tempArr.get(index) :
-                        (Map<String, Object>)tempMap.get(key);
-                    tempArr = null;
-                }
+                return tempObj;
             }
         }
         return null;
@@ -92,6 +88,7 @@ public class Libak_Map {
     public void putValue(List<String> path, Object value) {
         List<String> currentKeys = path;
         Object tempObj = this.sourceMap;
+        String pathHistory = '';
 
         while (!currentKeys.isEmpty()) {
             if (tempObj == null) {
@@ -99,6 +96,7 @@ public class Libak_Map {
             }
             
             String key = currentKeys.remove(0);
+            pathHistory += key + '.';
             Integer index = isListIndex(key);
             Boolean isLastKey = currentKeys.isEmpty();
 
@@ -110,8 +108,7 @@ public class Libak_Map {
                     } else if (tempArr.size() == index) {
                         tempArr.add(value);
                     } else {
-                        System.debug('Something Wrong 1'); // TODO: Implemets handle Exception
-                        return;
+                        throw new Libak_MapException('List index out of bounds: ' + index + '. Error Path: "' + pathHistory.removeEnd('.') + '"');
                     }
                 } else {
                     Map<String, Object> tempMap = (Map<String, Object>) tempObj;
@@ -129,20 +126,26 @@ public class Libak_Map {
                         tempArr.add(new Map<String, Object>());
                         tempObj = tempArr.get(tempArr.size() - 1);
                     } else {
-                        System.debug('Something Wrong 2'); // TODO: Implemets handle Exception
-                        return;
+                        throw new Libak_MapException('List index out of bounds: ' + index + '. Error Path: "' + pathHistory.removeEnd('.') + '"');
                     }
                 } else if (tempObj instanceof Map<String, Object>) {
                     Map<String, Object> tempMap = (Map<String, Object>) tempObj;
-                    if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) != null) {
-                        tempMap.put(key, new List<Object>());
-                    } else if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) == null) {
+                    if (!tempMap.containsKey(key)) {
                         tempMap.put(key, new Map<String, Object>());
                     }
                     tempObj =  tempMap.get(key);
                 }
             }
         }
+    }
+
+    /**
+     * Cheks is there path in map
+     * @param  path { String }
+     * @return      { Boolean }
+     */
+    public Boolean hasPath(String path) {
+        return this.value(path) != null;
     }
 
     /**
@@ -156,4 +159,6 @@ public class Libak_Map {
         Integer index = isArrayKey ? Integer.valueOf(key) : null;
         return index;
     }
+
+    class Libak_MapException extends Exception{}
 }
