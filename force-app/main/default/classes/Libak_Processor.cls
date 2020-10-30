@@ -46,7 +46,7 @@ public abstract class Libak_Processor {
      * @param request { Libak_Request }
      * @return        { Libak_Response }
      */
-    private abstract Libak_Response process(Libak_Request request);
+    public abstract Libak_Response process(Libak_Request request);
 
     /********************************************************************************
      *                             EXCEPTION

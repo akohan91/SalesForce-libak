@@ -3,7 +3,6 @@
  */
 public virtual class Libak_Map {
     protected Map<String, Object> data;
-    private final Pattern ARRAY_NOTATION = Pattern.compile('\\d+');
 
     /********************************************************************************
      *                             CONSTRUCTORS
@@ -162,7 +161,7 @@ public virtual class Libak_Map {
      * @return     { Integer | null }
      */
     private Integer isListIndex(String key) {
-        Matcher arrayMatcher = this.ARRAY_NOTATION.matcher(key);
+        Matcher arrayMatcher = Pattern.compile('\\d+').matcher(key);
         Boolean isArrayKey = arrayMatcher.matches();
         Integer index = isArrayKey ? Integer.valueOf(key) : null;
         return index;
