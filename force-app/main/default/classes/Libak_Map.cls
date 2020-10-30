@@ -1,8 +1,8 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public class Libak_Map {
-    protected Map<String, Object> sourceMap;
+public virtual class Libak_Map {
+    protected Map<String, Object> data;
     private final Pattern ARRAY_NOTATION = Pattern.compile('\\d+');
 
     /********************************************************************************
@@ -10,20 +10,28 @@ public class Libak_Map {
      *******************************************************************************/
 
     public Libak_Map() {
-        this.sourceMap = new Map<String, Object>();
+        this.data = new Map<String, Object>();
     }
 
-    public Libak_Map(Map<String, Object> sourceMap) {
-        this.sourceMap = sourceMap;
+    public Libak_Map(Map<String, Object> data) {
+        this.data = data == null ? new Map<String, Object>() : data;
     }
 
     public Libak_Map(String sourceJSON) {
-        this.sourceMap = (Map<String, Object>) JSON.deserializeUntyped(sourceJSON);
+        this.data = (Map<String, Object>) JSON.deserializeUntyped(sourceJSON);
     }
 
     /********************************************************************************
      *                             PUBLIC METHODS
-     *******************************************************************************/
+    *******************************************************************************/
+
+    /**
+     * Returns the major map
+     * @return   { Map<String, Object> }
+     */
+    public Map<String, Object> data() {
+        return this.data;
+    }
 
     /**
      * Returns the value from map by path
@@ -41,7 +49,7 @@ public class Libak_Map {
      */
     public Object value(List<String> path) {
         List<String> currentKeys = path;
-        Object tempObj = this.sourceMap;
+        Object tempObj = this.data;
         List<Object> tempArr = null;
         Map<String, Object> tempMap;
 
@@ -87,7 +95,7 @@ public class Libak_Map {
      */
     public void putValue(List<String> path, Object value) {
         List<String> currentKeys = path;
-        Object tempObj = this.sourceMap;
+        Object tempObj = this.data;
         String pathHistory = '';
 
         while (!currentKeys.isEmpty()) {
@@ -139,6 +147,15 @@ public class Libak_Map {
         }
     }
     // throw new Libak_MapException('Map key cannot be a number. ' + 'Error Path: "' + pathHistory.removeEnd('.') + '"');
+    /**
+     * Cheks is there path in map
+     * @param  path { String }
+     * @return      { Boolean }
+     */
+    public Boolean hasPath(String path) {
+        return this.value(path) != null;
+    }
+
     /**
      * Define is key matches to Integer type
      * @param  key { String }
