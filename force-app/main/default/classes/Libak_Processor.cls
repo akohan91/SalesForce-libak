@@ -2,8 +2,8 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
 public abstract class Libak_Processor {
-    protected Libac_Request request;
-    protected Libac_Response response;
+    protected Libak_Request request;
+    protected Libak_Response response;
 
     /********************************************************************************
      *                             PUBLIC METHODS
@@ -12,20 +12,20 @@ public abstract class Libak_Processor {
     /**
      * Runs the process
      * @param  requestJSON { String } JSON
-     * @return             { Libac_Response }
+     * @return             { Libak_Response }
      */
-    public virtual Libac_Response process(String requestJSON) {
-        this.response = this.process(new Libac_Request(requestJSON));
+    public virtual Libak_Response process(String requestJSON) {
+        this.response = this.process(new Libak_Request(requestJSON));
         return this.response;
     }
     
     /**
      * Runs the process
      * @param  requestMap { Map<String, Object> }
-     * @return            { Libac_Response }
+     * @return            { Libak_Response }
      */
-    public virtual Libac_Response process(Map<String, Object> requestMap) {
-        this.response = this.process(new Libac_Request(requestMap));
+    public virtual Libak_Response process(Map<String, Object> requestMap) {
+        this.response = this.process(new Libak_Request(requestMap));
         return this.response;
     }
 
@@ -43,10 +43,10 @@ public abstract class Libak_Processor {
     
     /**
      * Method for the main logic in process
-     * @param request { Libac_Request }
-     * @return        { Libac_Response }
+     * @param request { Libak_Request }
+     * @return        { Libak_Response }
      */
-    private abstract Libac_Response process(Libac_Request request);
+    private abstract Libak_Response process(Libak_Request request);
 
     /********************************************************************************
      *                             EXCEPTION
