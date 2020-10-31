@@ -2,20 +2,14 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
 public virtual class Libak_Response {
-    public Map<String, Object> data = new Map<String, Object>();
-    public String title;
-    public String message;
-    public String status;
+    protected Map<String, Object> data = new Map<String, Object>();
+    protected String title;
+    protected String message;
+    protected String status;
 
     /********************************************************************************
      *                             CONSTRUCTORS
     *******************************************************************************/
-
-    public Libak_Response() {
-        this.title = Response_Codes__c.getInstance().Info__c;
-        this.message = 'The response data is empty.';
-        this.status = Response_Codes__c.getInstance().Info__c.toLowerCase();
-    }
     
     public Libak_Response(String responseJSON) {
         try {
@@ -25,6 +19,11 @@ public virtual class Libak_Response {
         }
     }
     
+    public Libak_Response(Libak_RestResponse restResponse) {
+        this(restResponse.data());
+        this.message = restResponse.message;
+    }
+
     public Libak_Response(Map<String, Object> responseDataMap) {
         this(responseDataMap, '');
     }
@@ -35,7 +34,7 @@ public virtual class Libak_Response {
         this.message = message;
         this.status = Response_Codes__c.getInstance().Success__c.toLowerCase();
     }
-
+    
     public Libak_Response(Exception err) {
         this.data = null;
         this.title = Response_Codes__c.getInstance().Error__c;

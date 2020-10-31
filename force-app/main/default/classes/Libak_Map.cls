@@ -1,5 +1,6 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
+ * Class wrapped "Map" class and extends its functionality
  */
 public virtual class Libak_Map {
     protected Map<String, Object> data;

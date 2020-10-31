@@ -1,6 +1,14 @@
+/**
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
+ */
 public abstract class Libak_RestProcessor extends Libak_Processor{
-    public override Libak_Response process(Libak_Request request) {
-        switch on (String)request.value('httpMethod') {
+    
+    public override Libak_Map process(Libak_Map request) {
+        return process((Libak_RestRequest) request);
+    }
+
+    public Libak_Map process(Libak_RestRequest request) {
+        switch on (String)request.httpMethod {
             when 'get' {
                 return handleGet(request);
             }
@@ -18,17 +26,17 @@ public abstract class Libak_RestProcessor extends Libak_Processor{
             }
         }
 		return null;
-    }
+    } 
 
     /********************************************************************************
      *                             ABSTRACT METHODS
     *******************************************************************************/
     
-    public abstract Libak_Response handleGet(Libak_Request request);
-    public abstract Libak_Response handlePost(Libak_Request request);
-    public abstract Libak_Response handlePut(Libak_Request request);
-    public abstract Libak_Response handlePatch(Libak_Request request);
-    public abstract Libak_Response handleDelete(Libak_Request request);
+    public abstract Libak_RestResponse handleGet(Libak_RestRequest request);
+    public abstract Libak_RestResponse handlePost(Libak_RestRequest request);
+    public abstract Libak_RestResponse handlePut(Libak_RestRequest request);
+    public abstract Libak_RestResponse handlePatch(Libak_RestRequest request);
+    public abstract Libak_RestResponse handleDelete(Libak_RestRequest request);
 
     public class Libak_RestProcessorException extends Exception{}
 }
