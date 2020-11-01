@@ -28,15 +28,15 @@ public class DemoRestService extends Libak_RestProcessor{
 		);
 	}
 
-		public override Libak_RestResponse handlePost(Libak_RestRequest request) {
+    public override Libak_RestResponse handlePost(Libak_RestRequest request) {
 		throw new Libak_RestProcessorException('POST Method is not awailable.');
 	}
 
-		public override Libak_RestResponse handlePut(Libak_RestRequest request) {
+    public override Libak_RestResponse handlePut(Libak_RestRequest request) {
 		throw new Libak_RestProcessorException('PUT Method is not awailable.');
 	}
 	
-		public override Libak_RestResponse handleDelete(Libak_RestRequest request) {
+    public override Libak_RestResponse handleDelete(Libak_RestRequest request) {
 		throw new Libak_RestProcessorException('DELETE Method is not awailable.');
 	}
 }
