@@ -8,15 +8,15 @@ public virtual class Libak_Request extends Libak_Map {
     *******************************************************************************/
 
     public Libak_Request() {
-        super();
+        this(new Map<String,Object>());
     }
 
-    public Libak_Request(Map<String, Object> requestMap) {
-        super(requestMap);
+    public Libak_Request(String requestJSON) {
+        this((Map<String, Object>) JSON.deserializeUntyped(requestJSON));
     }
     
-    public Libak_Request(String requestJSON) {
-        super(requestJSON);
+    public Libak_Request(Map<String, Object> requestMap) {
+        super(requestMap);
     }
 
     /********************************************************************************

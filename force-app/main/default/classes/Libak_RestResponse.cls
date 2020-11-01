@@ -11,15 +11,15 @@ public class Libak_RestResponse extends Libak_Map {
     *******************************************************************************/
 
     public Libak_RestResponse() {
-        super();
+        this(new Map<String,Object>());
     }
     
     public Libak_RestResponse(String responseDataJSON) {
-        super(responseDataJSON);
+        this((Map<String, Object>) JSON.deserializeUntyped(responseDataJSON));
     }
     
     public Libak_RestResponse(Map<String, Object> responseDataMap) {
-        super(responseDataMap);
+        this(responseDataMap, '');
     }
     
     public Libak_RestResponse(Map<String, Object> responseDataMap, String message) {

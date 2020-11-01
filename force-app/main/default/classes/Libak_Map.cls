@@ -10,20 +10,21 @@ public virtual class Libak_Map {
      *******************************************************************************/
 
     public Libak_Map() {
-        this.data = new Map<String, Object>();
+        this(new Map<String, Object>());
+    }
+
+    public Libak_Map(String sourceJSON) {
+        this((Map<String, Object>) JSON.deserializeUntyped(sourceJSON));
     }
 
     public Libak_Map(Map<String, Object> data) {
         this.data = data == null ? new Map<String, Object>() : data;
     }
 
-    public Libak_Map(String sourceJSON) {
-        this.data = (Map<String, Object>) JSON.deserializeUntyped(sourceJSON);
-    }
 
     /********************************************************************************
      *                             PUBLIC METHODS
-    *******************************************************************************/
+    ********************************************************************************/
 
     /**
      * Returns the major map
@@ -155,6 +156,14 @@ public virtual class Libak_Map {
     public Boolean hasPath(String path) {
         return this.value(path) != null;
     }
+
+    public String json() {
+        return JSON.serialize(this);
+    }
+
+    /********************************************************************************
+     *                             PRIVATE METHODS
+    ********************************************************************************/
 
     /**
      * Define is key matches to Integer type

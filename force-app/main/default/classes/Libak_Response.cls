@@ -1,8 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public virtual class Libak_Response {
-    protected Map<String, Object> data = new Map<String, Object>();
+public virtual class Libak_Response extends Libak_Map {
     protected String title;
     protected String message;
     protected String status;
@@ -18,16 +17,15 @@ public virtual class Libak_Response {
             this(err);
         }
     }
-    
-    public Libak_Response(Libak_RestResponse restResponse) {
-        this(restResponse.data());
-        this.message = restResponse.message;
-    }
 
     public Libak_Response(Map<String, Object> responseDataMap) {
         this(responseDataMap, '');
     }
 
+    public Libak_Response(Libak_RestResponse restResponse) {
+        this(restResponse.data(), restResponse.message);
+    }
+    
     public Libak_Response(Map<String, Object> responseDataMap, String message) {
         this.data = responseDataMap == null ? this.data : responseDataMap;
         this.title = Response_Codes__c.getInstance().Success__c;

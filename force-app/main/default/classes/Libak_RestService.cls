@@ -47,11 +47,11 @@ global without sharing class Libak_RestService {
                 jsonResponse();
             }
             setStatusCode(resp.statusCode);
-            RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new Libak_Response(resp)));
+            RestContext.response.responseBody = Blob.valueOf((new Libak_Response(resp).json()));
         } catch (Exception err) {
             jsonResponse();
             RestContext.response.statusCode = 400;
-            RestContext.response.responseBody = Blob.valueOf(JSON.serialize(new Libak_Response(err)));
+            RestContext.response.responseBody = Blob.valueOf((new Libak_Response(err).json()));
         }
     }
 
