@@ -4,42 +4,42 @@
  */
 public class Libak_ProcessorFactory {
 
-    /********************************************************************************
-     *                             PUBLIC METHODS
-    *******************************************************************************/
-    
-    /**
-     * Creates instance of Proccessor
-     * @param  processorName { String }
-     * @return               { Libak_Processor }
-     */
-    public static Libak_Processor getInstance(String processorName) {
-        return getInstance(processorName, 'No Processor Type with Name: ' + processorName);
-    }
+	/********************************************************************************
+	 *                             PUBLIC METHODS
+	 *******************************************************************************/
 
-    /**
-     * Creates instance of Proccessor
-     * @param  processorName { String }
-     * @param  errorMessage  { String }
-     * @return               { Libak_Processor }
-     */
-    private static Libak_Processor getInstance(String processorName, String errorMessage) {
-        Type processorType = Type.forName(processorName);
-        if (processorType == null) {
-            throw new Libak_ProcessorFactoryException(errorMessage);
-        }
+	/**
+	 * Creates instance of Proccessor
+	 * @param  processorName { String }
+	 * @return               { Libak_Processor }
+	 */
+	public static Libak_Processor getInstance(String processorName) {
+		return getInstance(processorName, 'No Processor Type with Name: ' + processorName);
+	}
 
-        Libak_Processor processor = (Libak_Processor) processorType.newInstance();
-        if (processor == null) {
-            throw new Libak_ProcessorFactoryException('Unable to create Processor instance of type name: ' + processorName);
-        }
+	/**
+	 * Creates instance of Proccessor
+	 * @param  processorName { String }
+	 * @param  errorMessage  { String }
+	 * @return               { Libak_Processor }
+	 */
+	private static Libak_Processor getInstance(String processorName, String errorMessage) {
+		Type processorType = Type.forName(processorName);
+		if (processorType == null) {
+			throw new Libak_ProcessorFactoryException(errorMessage);
+		}
 
-        return processor;
-    }
+		Libak_Processor processor = (Libak_Processor) processorType.newInstance();
+		if (processor == null) {
+			throw new Libak_ProcessorFactoryException('Unable to create Processor instance of type name: ' + processorName);
+		}
 
-    /********************************************************************************
-     *                             EXCEPTION
-    *******************************************************************************/
+		return processor;
+	}
 
-    public class Libak_ProcessorFactoryException extends Exception {}
+	/********************************************************************************
+	 *                             EXCEPTION
+	 *******************************************************************************/
+
+	public class Libak_ProcessorFactoryException extends Exception {}
 }

@@ -3,20 +3,20 @@
  */
 public abstract class Libak_Processor {
 
-    /********************************************************************************
-     *                             PUBLIC METHODS
-     *******************************************************************************/
+	/********************************************************************************
+	 *                             PUBLIC METHODS
+	 *******************************************************************************/
 
-    /**
-     * Method for the main logic in process
-     * @param request { Libak_Map }
-     * @return        { Libak_Map }
-     */
-    public abstract Libak_Map process(Libak_Map request);
+	/**
+	 * Method for the main logic in process
+	 * @param request { Libak_Map }
+	 * @return        { Libak_Map }
+	 */
+	public abstract Libak_Map process(Libak_Map request);
 
-    /********************************************************************************
-     *                             EXCEPTION
-     *******************************************************************************/
+	/********************************************************************************
+	 *                             EXCEPTION
+	 *******************************************************************************/
 
-    public class Libak_ProcessorException extends Exception {}
+	public class Libak_ProcessorException extends Exception {}
 }
