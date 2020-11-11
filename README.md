@@ -1,18 +1,98 @@
-# Salesforce DX Project: Next Steps
+# **Libak Package**
 
-Now that you’ve created a Salesforce DX project, what’s next? Here are some documentation resources to get you started.
+The Libak package provides some features that will help your development process.
 
-## How Do You Plan to Deploy Your Changes?
+## Libak_Map class
+### **Description**
+The Libak_Map class improves your work with the maps. The commont use case is the working with JSON fromat. But you also can use it in other cases.
 
-Do you want to deploy a set of changes, or create a self-contained application? Choose a [development model](https://developer.salesforce.com/tools/vscode/en/user-guide/development-models).
+### **Properties**
+```js
+protected Map<String, Object> data;
+```
 
-## Configure Your Salesforce DX Project
+### **Constructors**
 
-The `sfdx-project.json` file contains useful configuration information for your project. See [Salesforce DX Project Configuration](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_ws_config.htm) in the _Salesforce DX Developer Guide_ for details about this file.
+```js
+public Libak_Map(Map<String, Object> data) {}
+```
+The common constructor takes the map and assigns it to `data` property
 
-## Read All About It
+```js
+public Libak_Map(String sourceJSON) {}
+```
+The constructor takes the JSON and than deserializes and assigns it to `data` property
 
-- [Salesforce Extensions Documentation](https://developer.salesforce.com/tools/vscode/)
-- [Salesforce CLI Setup Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_setup.meta/sfdx_setup/sfdx_setup_intro.htm)
-- [Salesforce DX Developer Guide](https://developer.salesforce.com/docs/atlas.en-us.sfdx_dev.meta/sfdx_dev/sfdx_dev_intro.htm)
-- [Salesforce CLI Command Reference](https://developer.salesforce.com/docs/atlas.en-us.sfdx_cli_reference.meta/sfdx_cli_reference/cli_reference.htm)
+```js
+public Libak_Map() {}
+```
+The constructor nothing takes but create the empty map and assigns it to `data` property
+
+### **Methods**
+
+### **`data()`**
+The method just returns the `data` property
+
+### **`value(String path)`**
+
+The method takes the path to the element as string separated by dot `"."` and returns the value with type `Object`. For example: 
+
+**Arguments:**
+
+`String path`
+
+**Returns:**
+
+`Object || null`
+
+```js
+String JSONstring = '{"array":["Hello, world!"]}';
+Libak_Map awesomeMap = new Libak_Map(JSONstring);
+System.debug(awesomeMap.value('array.0')); // Hello, world!
+```
+
+### **`value(List<String> path)`**
+
+The method takes the path to the element separated as List of Strings and returns the value with type `Object`. For example:
+
+**Arguments:**
+
+`List<String> path`
+
+**Returns:**
+
+`Object || null`
+
+```js
+String JSONstring = '{"array":["Hello, world!"]}';
+Libak_Map awesomeMap = new Libak_Map(JSONstring);
+System.debug(awesomeMap.value(new List<String>{'array', '0'})); // Hello, world!
+```
+
+### **`putValue (String path, Object value)`**
+
+The method creates new or changes an existing value. 
+
+**Arguments:**
+
+- `String path`
+
+- `Object value`
+
+**Returns:**
+
+- `void`
+```js
+String JSONstring = '{"array":["Hello, world!"]}';
+Libak_Map awesomeMap = new Libak_Map(JSONstring);
+System.debug(awesomeMap.value('array.0')); // Hello, world!
+
+awesomeMap.putValue('array.1', 'My name is Andrew!');
+System.debug(awesomeMap.value('array.1')); // My name is Andrew!
+
+awesomeMap.putValue('array', new List<String> {'Great', ' feature!'});
+System.debug(
+	(String) awesomeMap.value('array.0') + 
+	(String) awesomeMap.value('array.1')
+); // Great feature! 
+```
