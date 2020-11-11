@@ -7,23 +7,23 @@ The Libak package provides some features that will help your development process
 The Libak_Map class improves your work with the maps. The commont use case is the working with JSON fromat. But you also can use it in other cases.
 
 ### **Properties**
-```java
+```js
 protected Map<String, Object> data;
 ```
 
 ### **Constructors**
 
-```java
+```js
 public Libak_Map(Map<String, Object> data) {}
 ```
 The common constructor takes the map and assigns it to `data` property
 
-```java
+```js
 public Libak_Map(String sourceJSON) {}
 ```
 The constructor takes the JSON and than deserializes and assigns it to `data` property
 
-```java
+```js
 public Libak_Map() {}
 ```
 The constructor nothing takes but create the empty map and assigns it to `data` property
@@ -45,7 +45,7 @@ The method takes the path to the element as string separated by dot `"."` and re
 
 `Object || null`
 
-```java
+```js
 String JSONstring = '{"array":["Hello, world!"]}';
 Libak_Map awesomeMap = new Libak_Map(JSONstring);
 System.debug(awesomeMap.value('array.0')); // Hello, world!
@@ -63,7 +63,7 @@ The method takes the path to the element separated as List of Strings and return
 
 `Object || null`
 
-```java
+```js
 String JSONstring = '{"array":["Hello, world!"]}';
 Libak_Map awesomeMap = new Libak_Map(JSONstring);
 System.debug(awesomeMap.value(new List<String>{'array', '0'})); // Hello, world!
@@ -82,7 +82,7 @@ The method creates new or changes an existing value.
 **Returns:**
 
 - `void`
-```java
+```js
 String JSONstring = '{"array":["Hello, world!"]}';
 Libak_Map awesomeMap = new Libak_Map(JSONstring);
 System.debug(awesomeMap.value('array.0')); // Hello, world!
