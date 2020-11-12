@@ -147,7 +147,7 @@ public virtual class Libak_Map {
 			}
 		}
 	}
-	// throw new Libak_MapException('Map key cannot be a number. ' + 'Error Path: "' + pathHistory.removeEnd('.') + '"');
+
 	/**
 	 * Cheks is there path in map
 	 * @param  path { String }
@@ -158,7 +158,7 @@ public virtual class Libak_Map {
 	}
 
 	public String json() {
-		return JSON.serialize(this);
+		return JSON.serialize(this.data);
 	}
 
 	/********************************************************************************

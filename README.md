@@ -96,3 +96,71 @@ System.debug(
 	(String) awesomeMap.value('array.1')
 ); // Great feature! 
 ```
+
+### **`putValue (List<String> path, Object value)`**
+
+The method creates new or changes an existing value. 
+
+**Arguments:**
+
+- `List<String> path`
+
+- `Object value`
+
+**Returns:**
+
+- `void`
+```js
+String JSONstring = '{"array":["Hello, world!"]}';
+Libak_Map awesomeMap = new Libak_Map(JSONstring);
+System.debug(awesomeMap.value('array.0')); // Hello, world!
+
+awesomeMap.putValue(new List<String>{'array', '1'}, 'My name is Andrew!');
+System.debug(awesomeMap.value('array.1')); // My name is Andrew!
+
+awesomeMap.putValue(new List<String>{'array'}, new List<String> {'Great', ' feature!'});
+System.debug(
+	(String) awesomeMap.value('array.0') + 
+	(String) awesomeMap.value('array.1')
+); // Great feature! 
+```
+
+### **`hasPath (String path)`**
+
+The method checks is there the path in the map
+
+**Arguments:**
+
+- `String path`
+
+**Returns:**
+
+- `Boolean`
+
+```js
+String JSONstring = '{"array":["Hello, world!"]}';
+Libak_Map awesomeMap = new Libak_Map(JSONstring);
+
+System.debug(awesomeMap.hasPath('array')); // true
+System.debug(awesomeMap.hasPath('array.0')); // true
+System.debug(awesomeMap.hasPath('array.1')); // false
+```
+
+### **`json ()`**
+
+Convert the map to JSON
+
+**Returns:**
+
+- `String`
+
+```js
+Libak_Map awesomeMap = new Libak_Map(
+	new Map<String, Object>{
+		'id' => 'uniqueId',
+		'message' => 'Hello, World!'
+	}
+);
+
+System.debug(awesomeMap.json()); // {"message":"Hello, World!","id":"uniqueId"}
+```
