@@ -2,22 +2,22 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  * Class wrapped "Map" class and extends its functionality
  */
-public with sharing virtual class NiceMap {
+global with sharing virtual class NiceMap {
 	protected Map<String, Object> data;
 
 	/********************************************************************************
 	 *                             CONSTRUCTORS
 	 *******************************************************************************/
 
-	public NiceMap() {
+	global NiceMap() {
 		this(new Map<String, Object>());
 	}
 
-	public NiceMap(String sourceJSON) {
+	global NiceMap(String sourceJSON) {
 		this((Map<String, Object>) JSON.deserializeUntyped(sourceJSON));
 	}
 
-	public NiceMap(Map<String, Object> data) {
+	global NiceMap(Map<String, Object> data) {
 		this.data = data == null ? new Map<String, Object>() : data;
 	}
 
@@ -30,7 +30,7 @@ public with sharing virtual class NiceMap {
 	 * Returns the major map
 	 * @return   { Map<String, Object> }
 	 */
-	public Map<String, Object> data() {
+	global Map<String, Object> data() {
 		return this.data;
 	}
 
@@ -39,7 +39,7 @@ public with sharing virtual class NiceMap {
 	 * @param  path  { String }
 	 * @return       { Object || null }
 	 */
-	public Object value(String path) {
+	global Object value(String path) {
 		return value(path.split('\\.'));
 	}
 
@@ -48,7 +48,7 @@ public with sharing virtual class NiceMap {
 	 * @param  path  { String[] }
 	 * @return       { Object || null }
 	 */
-	public Object value(List<String> path) {
+	global Object value(List<String> path) {
 		List<String> currentKeys = path;
 		Object tempObj = this.data;
 		List<Object> tempArr = null;
@@ -85,7 +85,7 @@ public with sharing virtual class NiceMap {
 	 * @param  path  { String }
 	 * @param  value { Any }
 	 */
-	public void putValue (String path, Object value) {
+	global void putValue (String path, Object value) {
 		putValue(path.split('\\.'), value);
 	}
 
@@ -94,7 +94,7 @@ public with sharing virtual class NiceMap {
 	 * @param  path  { String[] }
 	 * @param  value { Any }
 	 */
-	public void putValue(List<String> path, Object value) {
+	global void putValue(List<String> path, Object value) {
 		List<String> currentKeys = path;
 		Object tempObj = this.data;
 		String pathHistory = '';
@@ -153,11 +153,11 @@ public with sharing virtual class NiceMap {
 	 * @param  path { String }
 	 * @return      { Boolean }
 	 */
-	public Boolean hasPath(String path) {
+	global Boolean hasPath(String path) {
 		return this.value(path) != null;
 	}
 
-	public virtual String json() {
+	global virtual String json() {
 		return JSON.serialize(this.data);
 	}
 
@@ -177,5 +177,5 @@ public with sharing virtual class NiceMap {
 		return index;
 	}
 
-	class NiceMapException extends Exception{}
+	global class NiceMapException extends Exception{}
 }

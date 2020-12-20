@@ -1,13 +1,13 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public with sharing abstract class RestProcessor extends Processor {
+global with sharing abstract class RestProcessor extends Processor {
 
-	public override NiceMap process(NiceMap request) {
+	global override NiceMap process(NiceMap request) {
 		return process((RestRequestData) request);
 	}
 
-	public NiceMap process(RestRequestData request) {
+	global NiceMap process(RestRequestData request) {
 		switch on(String) request.httpMethod {
 			when 'get' {
 				return handleGet(request);
@@ -32,11 +32,11 @@ public with sharing abstract class RestProcessor extends Processor {
 	 *                             ABSTRACT METHODS
 	 *******************************************************************************/
 
-	public abstract RestResponseData handleGet(RestRequestData request);
-	public abstract RestResponseData handlePost(RestRequestData request);
-	public abstract RestResponseData handlePut(RestRequestData request);
-	public abstract RestResponseData handlePatch(RestRequestData request);
-	public abstract RestResponseData handleDelete(RestRequestData request);
+	global abstract RestResponseData handleGet(RestRequestData request);
+	global abstract RestResponseData handlePost(RestRequestData request);
+	global abstract RestResponseData handlePut(RestRequestData request);
+	global abstract RestResponseData handlePatch(RestRequestData request);
+	global abstract RestResponseData handleDelete(RestRequestData request);
 
-	public class RestProcessorException extends Exception {}
+	global class RestProcessorException extends Exception {}
 }

@@ -1,25 +1,21 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public with sharing virtual class Request extends NiceMap {
+global with sharing virtual class Request extends NiceMap {
 
 	/********************************************************************************
 	 *                             CONSTRUCTORS
 	 *******************************************************************************/
 
-	public Request() {
+	global Request() {
 		this(new Map < String, Object > ());
 	}
 
-	public Request(String requestJSON) {
+	global Request(String requestJSON) {
 		this((Map < String, Object > ) JSON.deserializeUntyped(requestJSON));
 	}
 
-	public Request(Map < String, Object > requestMap) {
+	global Request(Map < String, Object > requestMap) {
 		super(requestMap);
 	}
-
-	/********************************************************************************
-	 *                             PUBLIC METHODS
-	 *******************************************************************************/
 }

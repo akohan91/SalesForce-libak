@@ -14,17 +14,17 @@ protected Map<String, Object> data;
 ### **Constructors**
 
 ```js
-public NiceMap(Map<String, Object> data) {}
+global NiceMap(Map<String, Object> data) {}
 ```
 The common constructor takes the map and assigns it to `data` property
 
 ```js
-public NiceMap(String sourceJSON) {}
+global NiceMap(String sourceJSON) {}
 ```
 The constructor takes the JSON and than deserializes and assigns it to `data` property
 
 ```js
-public NiceMap() {}
+global NiceMap() {}
 ```
 The constructor nothing takes but create the empty map and assigns it to `data` property
 

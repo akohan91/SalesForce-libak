@@ -1,28 +1,28 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public with sharing class RestResponseData extends NiceMap {
-	public Integer statusCode;
-	public Map < String, String > headers = new Map < String, String > ();
-	public String message;
+global with sharing class RestResponseData extends NiceMap {
+	global Integer statusCode;
+	global Map < String, String > headers = new Map < String, String > ();
+	global String message;
 
 	/********************************************************************************
 	 *                             CONSTRUCTORS
 	 *******************************************************************************/
 
-	public RestResponseData() {
+	global RestResponseData() {
 		this(new Map < String, Object > ());
 	}
 
-	public RestResponseData(String responseDataJSON) {
+	global RestResponseData(String responseDataJSON) {
 		this((Map < String, Object > ) JSON.deserializeUntyped(responseDataJSON));
 	}
 
-	public RestResponseData(Map < String, Object > responseDataMap) {
+	global RestResponseData(Map < String, Object > responseDataMap) {
 		this(responseDataMap, '');
 	}
 
-	public RestResponseData(Map < String, Object > responseDataMap, String message) {
+	global RestResponseData(Map < String, Object > responseDataMap, String message) {
 		super(responseDataMap);
 		this.message = message;
 	}

@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public with sharing abstract class Processor {
+global with sharing abstract class Processor {
 
 	/********************************************************************************
 	 *                             PUBLIC METHODS
@@ -12,11 +12,11 @@ public with sharing abstract class Processor {
 	 * @param request { NiceMap }
 	 * @return        { NiceMap }
 	 */
-	public abstract NiceMap process(NiceMap request);
+	global abstract NiceMap process(NiceMap request);
 
 	/********************************************************************************
 	 *                             EXCEPTION
 	 *******************************************************************************/
 
-	public class ProcessorException extends Exception {}
+	global class ProcessorException extends Exception {}
 }

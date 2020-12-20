@@ -1,16 +1,16 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public with sharing class RestRequestData extends NiceMap {
-	public String httpMethod;
-	public Map < String, String > params = new Map < String, String > ();
-	public Map < String, String > headers = new Map < String, String > ();
+global with sharing class RestRequestData extends NiceMap {
+	global String httpMethod;
+	global Map < String, String > params = new Map < String, String > ();
+	global Map < String, String > headers = new Map < String, String > ();
 
 	/********************************************************************************
 	 *                             CONSTRUCTORS
 	 *******************************************************************************/
 
-	public RestRequestData(RestRequest request) {
+	global RestRequestData(RestRequest request) {
 		this.httpMethod = request.httpMethod.toLowerCase();
 
 		if (request.requestBody != null && String.isNotBlank(request.requestBody.toString())) {

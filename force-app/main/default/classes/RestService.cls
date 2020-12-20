@@ -84,5 +84,5 @@ global with sharing class RestService {
 	 *                                      CLASSES
 	 ********************************************************************************************************/
 
-	public class RestServiceException extends Exception {}
+	global class RestServiceException extends Exception {}
 }

@@ -2,7 +2,7 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  * The class is used to create an instancee of Processor class by class name
  */
-public with sharing class ProcessorFactory {
+global with sharing class ProcessorFactory {
 
 	/********************************************************************************
 	 *                             PUBLIC METHODS
@@ -13,7 +13,7 @@ public with sharing class ProcessorFactory {
 	 * @param  processorName { String }
 	 * @return               { Processor }
 	 */
-	public static Processor getInstance(String processorName) {
+	global static Processor getInstance(String processorName) {
 		return getInstance(processorName, 'No Processor Type with Name: ' + processorName);
 	}
 
@@ -23,7 +23,7 @@ public with sharing class ProcessorFactory {
 	 * @param  errorMessage  { String }
 	 * @return               { Processor }
 	 */
-	private static Processor getInstance(String processorName, String errorMessage) {
+	global static Processor getInstance(String processorName, String errorMessage) {
 		Type processorType = Type.forName(processorName);
 		if (processorType == null) {
 			throw new ProcessorFactoryException(errorMessage);
@@ -41,5 +41,5 @@ public with sharing class ProcessorFactory {
 	 *                             EXCEPTION
 	 *******************************************************************************/
 
-	public class ProcessorFactoryException extends Exception {}
+	global class ProcessorFactoryException extends Exception {}
 }
