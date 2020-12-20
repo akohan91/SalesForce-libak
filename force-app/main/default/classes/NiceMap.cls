@@ -147,7 +147,7 @@ public virtual class NiceMap {
 			}
 		}
 	}
-	// throw new NiceMapException('Map key cannot be a number. ' + 'Error Path: "' + pathHistory.removeEnd('.') + '"');
+
 	/**
 	 * Cheks is there path in map
 	 * @param  path { String }
@@ -158,7 +158,7 @@ public virtual class NiceMap {
 	}
 
 	public String json() {
-		return JSON.serialize(this);
+		return JSON.serialize(this.data);
 	}
 
 	/********************************************************************************
