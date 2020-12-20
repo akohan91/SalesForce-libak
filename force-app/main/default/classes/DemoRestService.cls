@@ -1,19 +1,19 @@
-public class DemoRestService extends Libak_RestProcessor {
-	public override Libak_RestResponse handleGet(Libak_RestRequest request) {
+public class DemoRestService extends RestProcessor {
+	public override RestResponseData handleGet(RestRequestData request) {
 		Account acc = [
 			SELECT Id, Name, Phone
 			FROM Account
 			WHERE Id =: (Id) request.params.get('id')
 		];
 
-		return new Libak_RestResponse(
+		return new RestResponseData(
 			new Map < String, Object > {
 				'account' => acc
 			}
 		);
 	}
 
-	public override Libak_RestResponse handlePatch(Libak_RestRequest request) {
+	public override RestResponseData handlePatch(RestRequestData request) {
 		Account acc = [
 			SELECT Id, Phone
 			FROM Account
@@ -24,7 +24,7 @@ public class DemoRestService extends Libak_RestProcessor {
 
 		update acc;
 
-		return new Libak_RestResponse(
+		return new RestResponseData(
 			new Map < String, Object > {
 				'account' => acc
 			},
@@ -32,15 +32,15 @@ public class DemoRestService extends Libak_RestProcessor {
 		);
 	}
 
-	public override Libak_RestResponse handlePost(Libak_RestRequest request) {
-		throw new Libak_RestProcessorException('POST Method is not awailable.');
+	public override RestResponseData handlePost(RestRequestData request) {
+		throw new RestProcessorException('POST Method is not awailable.');
 	}
 
-	public override Libak_RestResponse handlePut(Libak_RestRequest request) {
-		throw new Libak_RestProcessorException('PUT Method is not awailable.');
+	public override RestResponseData handlePut(RestRequestData request) {
+		throw new RestProcessorException('PUT Method is not awailable.');
 	}
 
-	public override Libak_RestResponse handleDelete(Libak_RestRequest request) {
-		throw new Libak_RestProcessorException('DELETE Method is not awailable.');
+	public override RestResponseData handleDelete(RestRequestData request) {
+		throw new RestProcessorException('DELETE Method is not awailable.');
 	}
 }
