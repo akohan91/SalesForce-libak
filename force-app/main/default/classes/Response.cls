@@ -39,4 +39,8 @@ public with sharing virtual class Response extends NiceMap {
 		this.message = err.getMessage();
 		this.status = Response_Codes__c.getInstance().Error__c.toLowerCase();
 	}
+
+	public override String json() {
+		return JSON.serialize(this);
+	}
 }

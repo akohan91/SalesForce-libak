@@ -157,7 +157,7 @@ public with sharing virtual class NiceMap {
 		return this.value(path) != null;
 	}
 
-	public String json() {
+	public virtual String json() {
 		return JSON.serialize(this.data);
 	}
 
