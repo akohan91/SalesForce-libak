@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public virtual class Request extends NiceMap {
+public with sharing virtual class Request extends NiceMap {
 
 	/********************************************************************************
 	 *                             CONSTRUCTORS

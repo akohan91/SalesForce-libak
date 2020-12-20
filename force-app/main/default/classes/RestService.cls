@@ -2,7 +2,7 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
 @RestResource(urlMapping = '/*')
-global without sharing class RestService {
+global with sharing class RestService {
 
 	/********************************************************************************************************
 	 *                                      HANDLERS

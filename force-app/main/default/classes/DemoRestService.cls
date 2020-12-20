@@ -1,4 +1,4 @@
-public class DemoRestService extends RestProcessor {
+public with sharing class DemoRestService extends RestProcessor {
 	public override RestResponseData handleGet(RestRequestData request) {
 		Account acc = [
 			SELECT Id, Name, Phone

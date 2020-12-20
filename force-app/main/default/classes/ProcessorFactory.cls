@@ -2,7 +2,7 @@
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  * The class is used to create an instancee of Processor class by class name
  */
-public class ProcessorFactory {
+public with sharing class ProcessorFactory {
 
 	/********************************************************************************
 	 *                             PUBLIC METHODS

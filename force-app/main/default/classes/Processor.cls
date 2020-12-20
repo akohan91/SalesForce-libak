@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public abstract class Processor {
+public with sharing abstract class Processor {
 
 	/********************************************************************************
 	 *                             PUBLIC METHODS

@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public class RestRequestData extends NiceMap {
+public with sharing class RestRequestData extends NiceMap {
 	public String httpMethod;
 	public Map < String, String > params = new Map < String, String > ();
 	public Map < String, String > headers = new Map < String, String > ();

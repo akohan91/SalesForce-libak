@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public virtual class Response extends NiceMap {
+public with sharing virtual class Response extends NiceMap {
 	protected String title;
 	protected String message;
 	protected String status;

@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public class RestResponseData extends NiceMap {
+public with sharing class RestResponseData extends NiceMap {
 	public Integer statusCode;
 	public Map < String, String > headers = new Map < String, String > ();
 	public String message;

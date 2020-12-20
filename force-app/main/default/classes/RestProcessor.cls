@@ -1,7 +1,7 @@
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
  */
-public abstract class RestProcessor extends Processor {
+public with sharing abstract class RestProcessor extends Processor {
 
 	public override NiceMap process(NiceMap request) {
 		return process((RestRequestData) request);
