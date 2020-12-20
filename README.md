@@ -30,10 +30,10 @@ The constructor nothing takes but create the empty map and assigns it to `data` 
 
 ### **Methods**
 
-### **`data()`**
+##### **`data()`**
 The method just returns the `data` property
 
-### **`value(String path)`**
+##### **`value(String path)`**
 
 The method takes the path to the element as string separated by dot `"."` and returns the value with type `Object`. For example:
 
@@ -51,7 +51,7 @@ NiceMap awesomeMap = new NiceMap(JSONstring);
 System.debug(awesomeMap.value('array.0')); // Hello, world!
 ```
 
-### **`value(List<String> path)`**
+##### **`value(List<String> path)`**
 
 The method takes the path to the element separated as List of Strings and returns the value with type `Object`. For example:
 
@@ -69,7 +69,7 @@ NiceMap awesomeMap = new NiceMap(JSONstring);
 System.debug(awesomeMap.value(new List<String>{'array', '0'})); // Hello, world!
 ```
 
-### **`putValue (String path, Object value)`**
+##### **`putValue (String path, Object value)`**
 
 The method creates new or changes an existing value.
 
@@ -97,7 +97,7 @@ System.debug(
 ); // Great feature!
 ```
 
-### **`putValue (List<String> path, Object value)`**
+##### **`putValue (List<String> path, Object value)`**
 
 The method creates new or changes an existing value.
 
@@ -125,7 +125,7 @@ System.debug(
 ); // Great feature!
 ```
 
-### **`hasPath (String path)`**
+##### **`hasPath (String path)`**
 
 The method checks is there the path in the map
 
@@ -146,7 +146,7 @@ System.debug(awesomeMap.hasPath('array.0')); // true
 System.debug(awesomeMap.hasPath('array.1')); // false
 ```
 
-### **`json ()`**
+##### **`json ()`**
 
 Convert the map to JSON
 
