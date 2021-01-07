@@ -1,3 +1,7 @@
+/**
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
+ * Class wrapped "Map" class and extends its functionality
+ */
 public with sharing class TestDataFactory {
     private User userWithoutAccess;
 

@@ -1,3 +1,7 @@
+/**
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
+ * Class wrapped "Map" class and extends its functionality
+ */
 @IsTest(isParallel=false)
 public with sharing class TestSobjectCollection {
     static TestDataFactory tdf = new TestDataFactory();

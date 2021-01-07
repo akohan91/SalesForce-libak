@@ -1,3 +1,8 @@
+
+/**
+ * @author Andrew Kohanovskij <akohan91@gmail.com>
+ * Class wrapped "Map" class and extends its functionality
+ */
 global with sharing class SobjectCollection {
 
     private List<SObject> records;
@@ -18,6 +23,12 @@ global with sharing class SobjectCollection {
 	 *                             PUBLIC METHODS
 	 *******************************************************************************/
 
+    /**
+     * Checks the 'isCreatable' flag of sObject and fields
+     * if true insert records
+     * else throw a SobjectCollectionException error
+     * @return   { List<Database.SaveResult> }
+     */
     global List<Database.SaveResult> insertRecords() {
         Set<String> processedObjects = new Set<String>();
 
@@ -46,6 +57,11 @@ global with sharing class SobjectCollection {
 	 *                             PUBLIC METHODS
 	 *******************************************************************************/
 
+    /**
+     * Checks the 'isCreatable' flag of sObject fields
+     * if false throw a SobjectCollectionException error
+     * @param  record {SObject}
+     */
     private void checkFieldsIsCreateable(SObject record) {
         Schema.DescribeSObjectResult sobjectDescribe = record.getSObjectType().getDescribe();
         Set<String> populatedFields = record.getPopulatedFieldsAsMap().keySet();
