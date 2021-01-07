@@ -11,6 +11,9 @@
 		<members>RestRequestData</members>
 		<members>RestResponseData</members>
 		<members>RestService</members>
+		<members>SobjectCollection</members>
+		<members>TestDataFactory</members>
+		<members>TestSobjectCollection</members>
 		<name>ApexClass</name>
 	</types>
 	<types>
@@ -20,6 +23,10 @@
 	<types>
 		<members>*</members>
 		<name>LightningComponentBundle</name>
+	</types>
+	<types>
+		<members>Libak Tests</members>
+		<name>Profile</name>
 	</types>
 	<version>49.0</version>
 </Package>
