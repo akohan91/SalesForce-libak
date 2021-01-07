@@ -3,18 +3,18 @@
  * Class wrapped "Map" class and extends its functionality
  */
 public with sharing class TestDataFactory {
-    private User userWithoutAccess;
+	private User userWithoutAccess;
 
-    public User createLibakTestsUser() {
-        User result = new User();
-        Profile profile = [
-            SELECT Id
-            FROM Profile
-            WHERE Name = 'Libak Tests'
-            WITH SECURITY_ENFORCED
-        ];
+	public User createLibakTestsUser() {
+		User result = new User();
+		Profile profile = [
+			SELECT Id
+			FROM Profile
+			WHERE Name = 'Libak Tests'
+			WITH SECURITY_ENFORCED
+		];
 
-        if ( this.userWithoutAccess != null ) {
+		if ( this.userWithoutAccess != null ) {
 			result = this.userWithoutAccess;
 		} else {
 			result = new User(
@@ -27,14 +27,14 @@ public with sharing class TestDataFactory {
 				ProfileId = profile.Id,
 				Country = 'United States',
 				TimeZoneSidKey = UserInfo.getTimeZone().getID(),
-                UserName = getUniqueKey() + 'test@without.com.testWithout'
-            );
-            new SobjectCollection(result).insertRecords();
+				UserName = getUniqueKey() + 'test@without.com.testWithout'
+			);
+			new SobjectCollection(result).insertRecords();
 		}
 		return result;
-    }
+	}
 
-    private String getUniqueKey(){
+	private String getUniqueKey(){
 		Blob b = Crypto.GenerateAESKey(128);
 		String hex = EncodingUtil.ConvertTohex(b);
 		String uid = hex.SubString(0,8);
