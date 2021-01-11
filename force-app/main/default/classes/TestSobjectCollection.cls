@@ -14,7 +14,10 @@ public with sharing class TestSobjectCollection {
 		System.runAs(user){
 			Boolean isException = false;
 			try {
-				new SobjectCollection(new Account( Name = 'Andrew Kohanovskij' )).insertRecords();
+				new SobjectCollection(new List<Account>{
+					new Account( Name = 'Andrew Kohanovskij'),
+					new Account( Name = 'Test Name')
+				}).insertRecords();
 			} catch (Exception exc) {
 				isException = true;
 				System.assertEquals(
