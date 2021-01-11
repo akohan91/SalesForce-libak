@@ -120,8 +120,18 @@ global with sharing virtual class NiceMap {
 						throw new NiceMapException('List index out of bounds: ' + index + '. Error Path: "' + pathHistory.removeEnd('.') + '"');
 					}
 				} else {
-					Map<String, Object> tempMap = (Map<String, Object>) tempObj;
-					tempMap.put(key, value);
+					if (tempObj instanceof Map<String, Object>) {
+						Map<String, Object> tempMap = (Map<String, Object>) tempObj;
+						tempMap.put(key, value);
+					} else if (tempObj instanceof List<Object>) {
+						List<Object> tempArr = (List<Object>) tempObj;
+						tempArr.add(value);
+					} else {
+						tempObj = new Map<String,Object>{key => value};
+						List<String> tempPath = pathHistory.split('\\.');
+						tempPath.remove(tempPath.size() - 1);
+						this.putValue(tempPath, tempObj);
+					}
 				}
 			} else {
 				if (tempObj instanceof List<Object> && index != null) {
@@ -139,7 +149,9 @@ global with sharing virtual class NiceMap {
 					}
 				} else if (tempObj instanceof Map<String, Object>) {
 					Map<String, Object> tempMap = (Map<String, Object>) tempObj;
-					if (!tempMap.containsKey(key)) {
+					if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) != null) {
+						tempMap.put(key, new List<Object>());
+					} else if (!tempMap.containsKey(key) && isListIndex(currentKeys.get(0)) == null) {
 						tempMap.put(key, new Map<String, Object>());
 					}
 					tempObj =  tempMap.get(key);
