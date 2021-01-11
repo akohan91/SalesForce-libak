@@ -1,7 +1,6 @@
 
 /**
  * @author Andrew Kohanovskij <akohan91@gmail.com>
- * Class wrapped "Map" class and extends its functionality
  */
 global with sharing class SobjectCollection {
 
