@@ -38,9 +38,9 @@ public with sharing class TestSobjectCollection {
 			} catch (Exception exc) {
 				isException = true;
 				System.assertEquals(
-					'Field "Title" of SObject "Contact" is not editable!',
+					'Field "Title" of SObject "Contact" is not createable!',
 					exc.getMessage(),
-					'The message should be: "SObject "Contact" is not editable!"'
+					'The message should be: "SObject "Contact" is not createable!"'
 				);
 			}
 			System.assert(isException, 'An error should be accured from SobjectCollection instance when insert!');
